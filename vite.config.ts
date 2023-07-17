@@ -7,12 +7,13 @@ import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/PractisePortugueseVerbs/',
   plugins: [
     vue({
       template: { transformAssetUrls }
     }),
     vueJsx(),
-    vuetify({ autoImport: true }),
+    vuetify({ autoImport: true })
   ],
   resolve: {
     alias: {
