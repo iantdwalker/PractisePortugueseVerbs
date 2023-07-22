@@ -1,16 +1,11 @@
 <template>
-  <!-- <div>
-    <v-checkbox
-      label="Checkbox"
-    >
-    </v-checkbox>
-  </div> -->
   <div>
     <v-responsive
       class="mx-auto"
       max-width="300"
     >
       <v-text-field
+        class="centered-input"
         variant="underlined"
         color="secondary"
         :hint="hint"
@@ -46,6 +41,9 @@ function toggleHint() {
 
 </script>
 
-<style scoped lang="sass">
+<style scoped lang="scss">
+.centered-input :deep(input) {
+  text-align: center
+}
 
 </style>
