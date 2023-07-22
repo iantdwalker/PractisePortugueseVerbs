@@ -1,12 +1,12 @@
-import { createVuetify } from 'vuetify'
-import { aliases, fa } from 'vuetify/iconsets/fa'
+import { createVuetify } from "vuetify";
+import { aliases, fa } from "vuetify/iconsets/fa";
 
 export default createVuetify({
   icons: {
-    defaultSet: 'fa',
+    defaultSet: "fa",
     aliases,
     sets: {
-      fa
-    }
-  }
-})
+      fa,
+    },
+  },
+});
