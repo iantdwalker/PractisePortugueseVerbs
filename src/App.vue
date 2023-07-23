@@ -9,8 +9,8 @@ import HelloWorld from "./components/HelloWorld.vue";
       alt="Vue logo"
       class="logo"
       src="@/assets/Flags_of_Brazil_and_Portugal.svg"
-      width="200"
-      height="150"
+      width="175"
+      height="125"
     />
     <div class="wrapper">
       <HelloWorld msg="Practise Portuguese Verbs" />
@@ -26,15 +26,9 @@ import HelloWorld from "./components/HelloWorld.vue";
   <RouterView />
 </template>
 
-<style>
-@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@500&display=swap");
-
-body {
-  font-family: "Caveat", cursive;
-}
-
+<style scoped>
 header {
-  line-height: 1.1;
+  line-height: 1.3;
   max-height: 100vh;
 }
 
