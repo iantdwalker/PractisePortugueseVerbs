@@ -15,8 +15,12 @@
         :suffix="exampleQuestionSuffix"
         :rules="[rules.required]"
         validate-on="blur"
-        :append-icon="questionIcon"
       >
+        <template v-slot:append>
+          <div :class="displayStyleIcon">
+            <font-awesome-icon :icon="questionIcon" />
+          </div>
+        </template>
       </v-text-field>
     </v-responsive>
   </div>
@@ -30,21 +34,37 @@ const { name } = useDisplay();
 const exampleQuestionPrefix = "Eu estou";
 const exampleQuestionSuffix = "meu jantar";
 const correctAnswer = "comendo";
-const questionIcon = "fas fa-utensils";
 
 const displayStyle = computed(() => {
   console.log("display style:" + name.value);
   switch (name.value) {
     case "xs":
-      return "center-text-input question-font-size question-icon";
+      return "center-text-input question-font-size";
     case "sm":
-      return "center-text-input question-font-size-sm question-icon-sm";
+      return "center-text-input question-font-size-sm";
     case "md":
-      return "center-text-input question-font-size-md question-icon-md";
+      return "center-text-input question-font-size-md";
     case "lg":
     case "xl":
     case "xxl":
-      return "center-text-input question-font-size-lgPlus question-icon-lgPlus";
+      return "center-text-input question-font-size-lgPlus";
+  }
+  return undefined;
+});
+
+const displayStyleIcon = computed(() => {
+  console.log("display style:" + name.value);
+  switch (name.value) {
+    case "xs":
+      return "question-icon";
+    case "sm":
+      return "question-icon-sm";
+    case "md":
+      return "question-icon-md";
+    case "lg":
+    case "xl":
+    case "xxl":
+      return "question-icon-lgPlus";
   }
   return undefined;
 });
@@ -55,12 +75,15 @@ const rules = {
 
 var userInputValue = ref("");
 var hintText = "Gerundio...";
+var questionIcon = ref("utensils");
 
 function onModelUpdated(value: string): void {
   if (value === correctAnswer) {
     hintText = "Correct!";
+    questionIcon.value = "check";
   } else {
     hintText = "Gerundio...";
+    questionIcon.value = "utensils";
   }
 }
 </script>
@@ -84,9 +107,8 @@ function onModelUpdated(value: string): void {
   font-size: 1.2em;
 }
 
-.question-icon :deep(.v-icon) {
+.question-icon {
   font-size: 1.2em;
-  padding-top: 15px;
 }
 
 /* small - small to medium tablet */
@@ -96,9 +118,8 @@ function onModelUpdated(value: string): void {
   font-size: 2em;
 }
 
-.question-icon-sm :deep(.v-icon) {
+.question-icon-sm {
   font-size: 2em;
-  padding-top: 25px;
 }
 
 /* medium - large tablet to laptop */
@@ -108,22 +129,28 @@ function onModelUpdated(value: string): void {
   font-size: 2.5em;
 }
 
-.question-icon-md :deep(.v-icon) {
+.question-icon-md {
   font-size: 2.5em;
-  padding-top: 30px;
 }
 
 /* largePlus - Laptop to desktop, 1080p to 1440p desktop, 4k and ultra-wide */
 .question-font-size-lgPlus :deep(input),
 .question-font-size-lgPlus :deep(.v-text-field__prefix),
-.question-font-size-lgPlus :deep(.v-text-field__suffix) {
+.question-font-size-lgPlus :deep(.v-text-field__suffix),
+.question-font-size-lgPlus :deep(.v-input__details) {
   font-size: 3em;
 }
 
-.question-icon-lgPlus :deep(.v-icon) {
+.question-icon-lgPlus {
   font-size: 3em;
-  padding-top: 35px;
 }
+
+/* .question-font-size-lgPlus :deep(.v-input__details) {
+  height: 80px;
+    line-height: 80px;
+    letter-spacing: normal;
+    font-size: 2em;
+} */
 
 // not currently doing anything:
 /* .additional-text :deep(.v-input__details) {
