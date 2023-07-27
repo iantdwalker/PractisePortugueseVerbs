@@ -1,24 +1,29 @@
 <template>
-  <div class="hand-written-font">
+  <div class="hand-written-font" :class="questionColour">
     <v-responsive class="mx-auto">
       <v-text-field
-        v-model="userInputValue"
-        @update:modelValue="onModelUpdated"
-        :class="displayStyle"
+        name="questionInputField"
+        v-model="questionInputFieldValue"
+        @update:modelValue="onQuestionInputFieldValueUpdated"
+        class="center-text-input"
+        :class="questionInputFieldDisplayStyle"
         variant="underlined"
         color="hsla(160, 100%, 37%, 1)"
-        :hint="hintText"
-        persistent-hint
         autofocus
         active
-        :prefix="exampleQuestionPrefix"
-        :suffix="exampleQuestionSuffix"
-        :rules="[rules.required]"
+        :prefix="questionPrefix"
+        :suffix="questionSuffix"
+        :rules="[rules.validateAnswer]"
         validate-on="blur"
       >
         <template v-slot:append>
-          <div :class="displayStyleIcon">
+          <div :class="[displayStyleIcon, questionColour]">
             <font-awesome-icon :icon="questionIcon" />
+          </div>
+        </template>
+        <template v-slot:details>
+          <div>
+            {{ hintText }}
           </div>
         </template>
       </v-text-field>
@@ -31,59 +36,92 @@ import { useDisplay } from "vuetify";
 import { computed, ref } from "vue";
 
 const { name } = useDisplay();
-const exampleQuestionPrefix = "Eu estou";
-const exampleQuestionSuffix = "meu jantar";
+const questionPrefix = "Eu estou";
+const questionSuffix = "meu jantar";
 const correctAnswer = "comendo";
+const questionHint = "Gerundio...";
+const correctAnswerHint = "Correcto!";
+const incorrectAnswerHint = "Incorrecto!";
+const questionIconText = "utensils";
+const correctAnswerIconText = "check";
+const incorrectAnswerIconText = "times";
 
-const displayStyle = computed(() => {
+var questionInputFieldValue = ref("");
+var hintText = ref(questionHint);
+var questionIcon = ref(questionIconText);
+
+/* const questionInputFontColour = computed(() => {
+  if (hintText.value === incorrectAnswerHint) {
+    return "red";
+  } else {
+    return "hsla(160, 100%, 37%, 1)";
+  }
+}); */
+
+const questionInputFieldDisplayStyle = computed(() => {
   console.log("display style:" + name.value);
   switch (name.value) {
     case "xs":
-      return "center-text-input question-font-size";
+      return "question-font-size";
     case "sm":
-      return "center-text-input question-font-size-sm";
+      return "question-font-size-sm";
     case "md":
-      return "center-text-input question-font-size-md";
+      return "question-font-size-md";
     case "lg":
     case "xl":
     case "xxl":
-      return "center-text-input question-font-size-lgPlus";
+      return "question-font-size-lgPlus";
   }
   return undefined;
 });
 
 const displayStyleIcon = computed(() => {
-  console.log("display style:" + name.value);
+  var style = "question-icon";
   switch (name.value) {
-    case "xs":
-      return "question-icon";
     case "sm":
-      return "question-icon-sm";
+      return `${style}-sm`;
     case "md":
-      return "question-icon-md";
+      return `${style}-md`;
     case "lg":
     case "xl":
     case "xxl":
-      return "question-icon-lgPlus";
+      return `${style}-lgPlus`;
+    default:
+      return style;
   }
-  return undefined;
+});
+
+const questionColour = computed(() => {
+  if (hintText.value === incorrectAnswerHint) {
+    return "question-incorrect-colour";
+  }
+  return "question-edit-colour";
 });
 
 const rules = {
-  required: (value: string) => value === correctAnswer || "Incorrect!",
+  validateAnswer: (value: string) => {
+    if (value.toLowerCase() === correctAnswer) {
+      hintText.value = correctAnswerHint;
+      questionIcon.value = correctAnswerIconText;
+      return true;
+    } else {
+      if (value === "") {
+        hintText.value = questionHint;
+        questionIcon.value = questionIconText;
+        return false;
+      } else {
+        hintText.value = incorrectAnswerHint;
+        questionIcon.value = incorrectAnswerIconText;
+        return false;
+      }
+    }
+  },
 };
 
-var userInputValue = ref("");
-var hintText = "Gerundio...";
-var questionIcon = ref("utensils");
-
-function onModelUpdated(value: string): void {
-  if (value === correctAnswer) {
-    hintText = "Correct!";
-    questionIcon.value = "check";
-  } else {
-    hintText = "Gerundio...";
-    questionIcon.value = "utensils";
+function onQuestionInputFieldValueUpdated(value: string): void {
+  if (value !== correctAnswer) {
+    hintText.value = questionHint;
+    questionIcon.value = questionIconText;
   }
 }
 </script>
@@ -93,7 +131,7 @@ function onModelUpdated(value: string): void {
 
 .hand-written-font {
   font-family: "Caveat", cursive;
-  color: hsla(160, 100%, 37%, 1);
+  //color: hsla(160, 100%, 37%, 1);
 }
 
 .center-text-input :deep(input) {
@@ -143,6 +181,14 @@ function onModelUpdated(value: string): void {
 
 .question-icon-lgPlus {
   font-size: 3em;
+}
+
+.question-edit-colour {
+  color: hsla(160, 100%, 37%, 1);
+}
+
+.question-incorrect-colour {
+  color: #b80424;
 }
 
 /* .question-font-size-lgPlus :deep(.v-input__details) {
