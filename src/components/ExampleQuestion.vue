@@ -1,32 +1,36 @@
 <template>
   <div class="hand-written-font" :class="questionColour">
     <v-responsive class="mx-auto">
-      <v-text-field
-        name="questionInputField"
-        v-model="questionInputFieldValue"
-        @update:modelValue="onQuestionInputFieldValueUpdated"
-        class="center-text-input"
-        :class="questionInputFieldDisplayStyle"
-        variant="underlined"
-        color="hsla(160, 100%, 37%, 1)"
-        autofocus
-        active
-        :prefix="questionPrefix"
-        :suffix="questionSuffix"
-        :rules="[rules.validateAnswer]"
-        validate-on="blur"
-      >
-        <template v-slot:append>
-          <div :class="[displayStyleIcon, questionColour]">
-            <font-awesome-icon :icon="questionIcon" />
-          </div>
-        </template>
-        <template v-slot:details>
-          <div>
-            {{ hintText }}
-          </div>
-        </template>
-      </v-text-field>
+      <v-form ref="questionInputForm">
+        <v-text-field
+          name="questionInput"
+          v-model="questionInputValue"
+          @update:modelValue="onQuestionInputValueChanged"
+          class="center-text-input"
+          :class="questionInputDisplayStyle"
+          variant="underlined"
+          color="hsla(160, 100%, 37%, 1)"
+          autofocus
+          active
+          :prefix="questionPrefix"
+          :suffix="questionSuffix"
+          :rules="[rules.validateAnswer]"
+          validate-on="blur"
+          :onFocus="onFocus"
+        >
+          <template v-slot:append>
+            <div :class="[displayStyleIcon, questionColour]">
+              <font-awesome-icon :icon="questionIcon" />
+            </div>
+          </template>
+          <template v-slot:details>
+            <div>
+              {{ hintText }}
+            </div>
+          </template>
+        </v-text-field>
+      </v-form>
+      <v-btn>btn</v-btn>
     </v-responsive>
   </div>
 </template>
@@ -46,37 +50,49 @@ const questionIconText = "utensils";
 const correctAnswerIconText = "check";
 const incorrectAnswerIconText = "times";
 
-var questionInputFieldValue = ref("");
+var questionInputForm = ref();
+var questionInputValue = ref("");
 var hintText = ref(questionHint);
 var questionIcon = ref(questionIconText);
+var valid = ref();
 
-/* const questionInputFontColour = computed(() => {
-  if (hintText.value === incorrectAnswerHint) {
-    return "red";
-  } else {
-    return "hsla(160, 100%, 37%, 1)";
-  }
-}); */
-
-const questionInputFieldDisplayStyle = computed(() => {
+const questionInputDisplayStyle = computed(() => {
   console.log("display style:" + name.value);
-  switch (name.value) {
-    case "xs":
-      return "question-font-size";
-    case "sm":
-      return "question-font-size-sm";
-    case "md":
-      return "question-font-size-md";
-    case "lg":
-    case "xl":
-    case "xxl":
-      return "question-font-size-lgPlus";
-  }
-  return undefined;
+  return createStyleForDisplay("question-font-size");
 });
 
 const displayStyleIcon = computed(() => {
-  var style = "question-icon";
+  return createStyleForDisplay("question-icon");
+});
+
+const questionColour = computed(() => {
+  //if (hintText.value === incorrectAnswerHint) {
+  if (valid.value === false) {
+    return "question-incorrect-colour";
+  }
+  return "question-edit-colour";
+});
+
+const rules = {
+  validateAnswer: (value: string) => {
+    if (value.toLowerCase() === correctAnswer) {
+      valid.value = true;
+      setQuestionHintAndIconCorrect();
+    } else {
+      if (value === "") {
+        //required for default state as rules execute on field focus
+        valid.value = true;
+        resetQuestionHintAndIcon();
+      } else {
+        valid.value = false;
+        setQuestionHintAndIconIncorrect();
+      }
+    }
+    return valid.value;
+  },
+};
+
+function createStyleForDisplay(style: string): string {
   switch (name.value) {
     case "sm":
       return `${style}-sm`;
@@ -89,40 +105,31 @@ const displayStyleIcon = computed(() => {
     default:
       return style;
   }
-});
+}
 
-const questionColour = computed(() => {
-  if (hintText.value === incorrectAnswerHint) {
-    return "question-incorrect-colour";
-  }
-  return "question-edit-colour";
-});
+function onQuestionInputValueChanged(value: string): void {
+  resetQuestionHintAndIcon();
+}
 
-const rules = {
-  validateAnswer: (value: string) => {
-    if (value.toLowerCase() === correctAnswer) {
-      hintText.value = correctAnswerHint;
-      questionIcon.value = correctAnswerIconText;
-      return true;
-    } else {
-      if (value === "") {
-        hintText.value = questionHint;
-        questionIcon.value = questionIconText;
-        return false;
-      } else {
-        hintText.value = incorrectAnswerHint;
-        questionIcon.value = incorrectAnswerIconText;
-        return false;
-      }
-    }
-  },
-};
+function resetQuestionHintAndIcon(): void {
+  hintText.value = questionHint;
+  questionIcon.value = questionIconText;
+}
 
-function onQuestionInputFieldValueUpdated(value: string): void {
-  if (value !== correctAnswer) {
-    hintText.value = questionHint;
-    questionIcon.value = questionIconText;
-  }
+function setQuestionHintAndIconIncorrect(): void {
+  hintText.value = incorrectAnswerHint;
+  questionIcon.value = incorrectAnswerIconText;
+}
+
+function setQuestionHintAndIconCorrect(): void {
+  hintText.value = correctAnswerHint;
+  questionIcon.value = correctAnswerIconText;
+}
+
+function onFocus() {
+  questionInputForm.value?.resetValidation();
+  valid.value = undefined;
+  resetQuestionHintAndIcon();
 }
 </script>
 
@@ -185,6 +192,7 @@ function onQuestionInputFieldValueUpdated(value: string): void {
 
 .question-edit-colour {
   color: hsla(160, 100%, 37%, 1);
+  border-color: hsla(160, 100%, 37%, 1);
 }
 
 .question-incorrect-colour {
