@@ -26,7 +26,6 @@
           </template>
         </v-text-field>
       </v-form>
-      <v-btn>btn</v-btn>
     </v-responsive>
   </div>
 </template>
