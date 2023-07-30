@@ -6,7 +6,7 @@
           name="questionInput"
           v-model="questionInputValue"
           @update:modelValue="onQuestionInputValueChanged"
-          class="center-text-input"
+          class="center-text-input themed-text-colour"
           :class="questionInputDisplayStyle"
           variant="underlined"
           color="hsla(160, 100%, 37%, 1)"
@@ -26,7 +26,6 @@
           </template>
         </v-text-field>
       </v-form>
-      <v-btn>btn</v-btn>
     </v-responsive>
   </div>
 </template>
@@ -138,6 +137,11 @@ function onFocus() {
 
 .center-text-input :deep(input) {
   text-align: center;
+}
+
+.themed-text-colour :deep(.v-text-field__prefix),
+.themed-text-colour :deep(.v-text-field__suffix) {
+  color: var(--color-text);
 }
 
 /* extra small - small to large phone */
