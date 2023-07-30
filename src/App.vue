@@ -1,14 +1,19 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { RouterLink, RouterView } from "vue-router";
+import HelloWorld from "./components/HelloWorld.vue";
 </script>
 
 <template>
   <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
+    <img
+      alt="Vue logo"
+      class="logo"
+      src="@/assets/Flags_of_Brazil_and_Portugal.svg"
+      width="175"
+      height="125"
+    />
     <div class="wrapper">
-      <HelloWorld msg="Practise Portuguese Verb Conjugations" />
+      <HelloWorld msg="Practise Portuguese Verbs" />
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
@@ -23,13 +28,13 @@ import HelloWorld from './components/HelloWorld.vue'
 
 <style scoped>
 header {
-  line-height: 1.5;
+  line-height: 1.3;
   max-height: 100vh;
 }
 
 .logo {
   display: block;
-  margin: 0 auto 2rem;
+  margin: 0 auto 1rem;
 }
 
 nav {
