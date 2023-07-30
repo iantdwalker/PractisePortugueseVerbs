@@ -15,17 +15,13 @@
           :prefix="questionPrefix"
           :suffix="questionSuffix"
           :rules="[rules.validateAnswer]"
+          :messages="hintText"
           validate-on="blur"
           :onFocus="onFocus"
         >
           <template v-slot:append>
             <div :class="[displayStyleIcon, questionColour]">
               <font-awesome-icon :icon="questionIcon" />
-            </div>
-          </template>
-          <template v-slot:details>
-            <div>
-              {{ hintText }}
             </div>
           </template>
         </v-text-field>
@@ -66,7 +62,6 @@ const displayStyleIcon = computed(() => {
 });
 
 const questionColour = computed(() => {
-  //if (hintText.value === incorrectAnswerHint) {
   if (valid.value === false) {
     return "question-incorrect-colour";
   }
@@ -80,12 +75,13 @@ const rules = {
       setQuestionHintAndIconCorrect();
     } else {
       if (value === "") {
-        //required for default state as rules execute on field focus
+        //required for default state as rules execute on mounted
         valid.value = true;
         resetQuestionHintAndIcon();
       } else {
         valid.value = false;
         setQuestionHintAndIconIncorrect();
+        return incorrectAnswerHint;
       }
     }
     return valid.value;
@@ -138,7 +134,6 @@ function onFocus() {
 
 .hand-written-font {
   font-family: "Caveat", cursive;
-  //color: hsla(160, 100%, 37%, 1);
 }
 
 .center-text-input :deep(input) {
@@ -148,8 +143,14 @@ function onFocus() {
 /* extra small - small to large phone */
 .question-font-size :deep(input),
 .question-font-size :deep(.v-text-field__prefix),
-.question-font-size :deep(.v-text-field__suffix) {
+.question-font-size :deep(.v-text-field__suffix),
+.question-font-size :deep(.v-messages__message) {
   font-size: 1.2em;
+}
+
+.question-font-size :deep(.v-messages__message) {
+  padding-top: 0px;
+  height: 20px;
 }
 
 .question-icon {
@@ -159,8 +160,14 @@ function onFocus() {
 /* small - small to medium tablet */
 .question-font-size-sm :deep(input),
 .question-font-size-sm :deep(.v-text-field__prefix),
-.question-font-size-sm :deep(.v-text-field__suffix) {
+.question-font-size-sm :deep(.v-text-field__suffix),
+.question-font-size-sm :deep(.v-messages__message) {
   font-size: 2em;
+}
+
+.question-font-size-sm :deep(.v-messages__message) {
+  padding-top: 6px;
+  height: 25px;
 }
 
 .question-icon-sm {
@@ -170,8 +177,14 @@ function onFocus() {
 /* medium - large tablet to laptop */
 .question-font-size-md :deep(input),
 .question-font-size-md :deep(.v-text-field__prefix),
-.question-font-size-md :deep(.v-text-field__suffix) {
+.question-font-size-md :deep(.v-text-field__suffix),
+.question-font-size-md :deep(.v-messages__message) {
   font-size: 2.5em;
+}
+
+.question-font-size-md :deep(.v-messages__message) {
+  padding-top: 8px;
+  height: 30px;
 }
 
 .question-icon-md {
@@ -182,8 +195,13 @@ function onFocus() {
 .question-font-size-lgPlus :deep(input),
 .question-font-size-lgPlus :deep(.v-text-field__prefix),
 .question-font-size-lgPlus :deep(.v-text-field__suffix),
-.question-font-size-lgPlus :deep(.v-input__details) {
+.question-font-size-lgPlus :deep(.v-messages__message) {
   font-size: 3em;
+}
+
+.question-font-size-lgPlus :deep(.v-messages__message) {
+  padding-top: 10px;
+  height: 35px;
 }
 
 .question-icon-lgPlus {
@@ -192,22 +210,9 @@ function onFocus() {
 
 .question-edit-colour {
   color: hsla(160, 100%, 37%, 1);
-  border-color: hsla(160, 100%, 37%, 1);
 }
 
 .question-incorrect-colour {
   color: #b80424;
 }
-
-/* .question-font-size-lgPlus :deep(.v-input__details) {
-  height: 80px;
-    line-height: 80px;
-    letter-spacing: normal;
-    font-size: 2em;
-} */
-
-// not currently doing anything:
-/* .additional-text :deep(.v-input__details) {
-  font-size: 1.5em;
-} */
 </style>
