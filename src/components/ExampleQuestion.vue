@@ -103,7 +103,7 @@ function createStyleForDisplay(style: string): string {
   }
 }
 
-function onQuestionInputValueChanged(value: string): void {
+function onQuestionInputValueChanged(): void {
   resetQuestionHintAndIcon();
 }
 
