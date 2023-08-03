@@ -26,13 +26,17 @@
           </template>
         </v-text-field>
       </v-form>
+      <!-- <p v-for="question in questionStore.gerundioData" :key="question.Id">
+        {{ question.answer }}
+      </p> -->
     </v-responsive>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useDisplay } from "vuetify";
-import { computed, ref } from "vue";
+import { computed, ref, onMounted } from "vue";
+//import { useQuestionStore } from "@/stores/question";
 
 const { name } = useDisplay();
 const questionPrefix = "Eu estou";
@@ -50,6 +54,11 @@ var questionInputValue = ref("");
 var hintText = ref(questionHint);
 var questionIcon = ref(questionIconText);
 var valid = ref();
+//var questionStore = useQuestionStore();
+
+/* onMounted(async () => {
+  await questionStore.importGerundioData();
+}); */
 
 const questionInputDisplayStyle = computed(() => {
   console.log("display style:" + name.value);
