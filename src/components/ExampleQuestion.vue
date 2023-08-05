@@ -35,7 +35,7 @@
 
 <script setup lang="ts">
 import { useDisplay } from "vuetify";
-import { computed, ref, onMounted } from "vue";
+import { computed, ref } from "vue";
 //import { useQuestionStore } from "@/stores/question";
 
 const { name } = useDisplay();
@@ -61,7 +61,6 @@ var valid = ref();
 }); */
 
 const questionInputDisplayStyle = computed(() => {
-  console.log("display style:" + name.value);
   return createStyleForDisplay("question-font-size");
 });
 
