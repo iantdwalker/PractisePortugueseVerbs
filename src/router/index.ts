@@ -20,7 +20,7 @@ const router = createRouter({
     {
       path: "/example",
       name: "example",
-      component: () => import("../components/ExampleQuestion.vue"),
+      component: () => import("../components/ExampleQuestion2.vue"),
     },
   ],
 });
