@@ -8,8 +8,12 @@
     "playwright.config.*"
   ],
   "compilerOptions": {
+    "isolatedModules": true,
+    "useDefineForClassFields": true,
     "composite": true,
     "module": "ESNext",
-    "types": ["node"]
+    "types": ["node", "vite/client"],
+    "esModuleInterop": true,
+    "resolveJsonModule": true
   }
 }
