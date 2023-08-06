@@ -15,13 +15,14 @@
           :prefix="questionStore.currentQuestion.prefix"
           :suffix="questionStore.currentQuestion.suffix"
           :rules="[rules.validateAnswer]"
-          :messages="questionStore.currentQuestion.hints"
-          validate-on="submit"
+          :messages="hintText"
+          validate-on="submit lazy"
+          @submit.prevent="onCheckAnswerBtnClicked"
           :onFocus="onFocus"
         >
           <template v-slot:append>
             <div :class="[displayStyleIcon, questionColour]">
-              <font-awesome-icon :icon="questionStore.currentQuestion.icon" />
+              <font-awesome-icon :icon="questionIcon" />
             </div>
           </template>
         </v-text-field>
@@ -66,31 +67,35 @@
 
 <script setup lang="ts">
 import { useDisplay } from "vuetify";
-import { computed, ref, onBeforeMount } from "vue";
+import { computed, ref, onBeforeMount, watch } from "vue";
 import { useQuestionStore } from "@/stores/question";
 
 const { name } = useDisplay();
-const questionPrefix = "Eu estou";
-const questionSuffix = "meu jantar";
-const correctAnswer = "comendo";
-const questionHint = "Gerundio...";
 const correctAnswerHint = "Correcto!";
 const incorrectAnswerHint = "Incorrecto!";
-const questionIconText = "utensils";
 const correctAnswerIconText = "check";
 const incorrectAnswerIconText = "times";
 
 var questionInputForm = ref();
 var questionInputValue = ref("");
-var hintText = ref(questionHint);
-var questionIcon = ref(questionIconText);
+var hintText = ref("");
+var questionIcon = ref("signature");
 var valid = ref();
 var questionStore = useQuestionStore();
 
 onBeforeMount(async () => {
   await questionStore.importGerundioData();
   questionStore.initialiseQuestionData();
+  hintText.value = questionStore.currentQuestion.hints.toString();
+  questionIcon.value = questionStore.currentQuestion.icon;
 });
+
+watch(
+  () => questionStore.currentQuestion.icon,
+  () => {
+    resetQuestionIcon();
+  }
+);
 
 const questionInputDisplayStyle = computed(() => {
   return createStyleForDisplay("question-font-size");
@@ -109,14 +114,15 @@ const questionColour = computed(() => {
 
 const rules = {
   validateAnswer: (value: string) => {
-    if (value.toLowerCase() === correctAnswer) {
+    if (value.toLowerCase() === questionStore.currentQuestion.answer) {
       valid.value = true;
       setQuestionHintAndIconCorrect();
     } else {
       if (value === "") {
         //required for default state as rules execute on mounted
         valid.value = true;
-        resetQuestionHintAndIcon();
+        resetQuestionHint();
+        resetQuestionIcon();
       } else {
         valid.value = false;
         setQuestionHintAndIconIncorrect();
@@ -143,12 +149,20 @@ function createStyleForDisplay(style: string): string {
 }
 
 function onQuestionInputValueChanged(): void {
-  resetQuestionHintAndIcon();
+  resetQuestionHint();
+  resetQuestionIcon();
 }
 
-function resetQuestionHintAndIcon(): void {
-  hintText.value = questionHint;
-  questionIcon.value = questionIconText;
+function resetQuestionHint(): void {
+  hintText.value = questionStore.currentQuestion.hints.toString();
+}
+
+function resetQuestionIcon(): void {
+  questionIcon.value = questionStore.currentQuestion.icon;
+}
+
+function resetInputValue(): void {
+  questionInputValue.value = "";
 }
 
 function setQuestionHintAndIconIncorrect(): void {
@@ -162,16 +176,23 @@ function setQuestionHintAndIconCorrect(): void {
 }
 
 function onFocus() {
+  resetQuestionState();
+}
+
+function resetQuestionState() {
   questionInputForm.value?.resetValidation();
   valid.value = undefined;
-  resetQuestionHintAndIcon();
+  resetQuestionHint();
+  resetQuestionIcon();
 }
 
 function onCheckAnswerBtnClicked() {
-  console.log("onCheckAnswerBtnClicked!");
+  questionInputForm.value?.validate();
 }
 
 function onNextQuestionBtnClicked() {
+  resetQuestionState();
+  resetInputValue();
   questionStore.next();
 }
 </script>
