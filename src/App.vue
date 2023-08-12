@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
-import HelloWorld from "./components/HelloWorld.vue";
+import HeadingMessages from "./components/HeadingMessages.vue";
 </script>
 
 <template>
@@ -13,7 +13,7 @@ import HelloWorld from "./components/HelloWorld.vue";
       height="125"
     />
     <div class="wrapper">
-      <HelloWorld msg="Practise Portuguese Verbs" />
+      <HeadingMessages msg="Practise Portuguese Verbs" />
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
