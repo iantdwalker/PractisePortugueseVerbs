@@ -202,6 +202,7 @@ function onNextQuestionBtnClicked() {
 
 .hand-written-font {
   font-family: "Caveat", cursive;
+  background-color: brown;
 }
 
 .center-text-input :deep(input) {

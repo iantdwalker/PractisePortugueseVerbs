@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from "vue-router";
 import HeadingMessages from "./components/HeadingMessages.vue";
+import ToolbarComponent from "./components/ToolbarComponent.vue";
 </script>
 
 <template>
   <header>
+    <ToolbarComponent></ToolbarComponent>
     <img
       alt="Vue logo"
       class="logo"
@@ -14,22 +16,27 @@ import HeadingMessages from "./components/HeadingMessages.vue";
     />
     <div class="wrapper">
       <HeadingMessages msg="Practise Portuguese Verbs" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-        <RouterLink to="/example">Example Question</RouterLink>
-      </nav>
     </div>
   </header>
-
   <RouterView />
+  <nav>
+    <v-btn>
+      <RouterLink to="/">Home</RouterLink>
+    </v-btn>
+    <v-btn>
+      <RouterLink to="/about">About</RouterLink>
+    </v-btn>
+    <v-btn>
+      <RouterLink to="/example">Example Question</RouterLink>
+    </v-btn>
+  </nav>
 </template>
 
 <style scoped>
 header {
   line-height: 1.3;
   max-height: 100vh;
+  background-color: aqua;
 }
 
 .logo {
@@ -41,7 +48,8 @@ nav {
   width: 100%;
   font-size: 12px;
   text-align: center;
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
+  background-color: yellow;
 }
 
 nav a.router-link-exact-active {
