@@ -2,11 +2,14 @@
 import { RouterLink, RouterView } from "vue-router";
 import HeadingMessages from "./components/HeadingMessages.vue";
 import ToolbarComponent from "./components/ToolbarComponent.vue";
+import SettingsView from "./views/SettingsView.vue";
 </script>
 
 <template>
   <header>
-    <ToolbarComponent></ToolbarComponent>
+    <ToolbarComponent>
+      <SettingsView />
+    </ToolbarComponent>
     <img
       alt="Vue logo"
       class="logo"
