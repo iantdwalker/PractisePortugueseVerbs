@@ -1,7 +1,7 @@
 <template>
   <div>
-    <v-container class="container">
-      <v-row align="center" class="row">
+    <v-container>
+      <v-row align="center">
         <v-col cols="2">
           <font-awesome-icon icon="cog" class="icon" />
         </v-col>
@@ -14,7 +14,7 @@
           <v-divider></v-divider>
         </v-col>
       </v-row>
-      <v-row align="center" class="row" pb="10">
+      <v-row align="center" pb="10">
         <v-col>
           <v-radio-group label="App language:" hide-details>
             <v-radio
@@ -29,7 +29,7 @@
           </v-radio-group>
         </v-col>
       </v-row>
-      <v-row align="center" class="row">
+      <v-row align="center">
         <v-col>
           <v-radio-group
             v-model="feedback"
@@ -42,7 +42,7 @@
           </v-radio-group>
         </v-col>
       </v-row>
-      <v-row align="center" class="row">
+      <v-row align="center">
         <v-switch
           disabled
           v-model="showVerbHint"
@@ -52,7 +52,7 @@
           hide-details
         ></v-switch>
       </v-row>
-      <v-row align="center" class="row">
+      <v-row align="center">
         <v-switch
           disabled
           v-model="acceptAltVerbs"
@@ -62,7 +62,7 @@
           hide-details
         ></v-switch>
       </v-row>
-      <v-row align="center" class="row">
+      <v-row align="center">
         <v-switch
           disabled
           v-model="timer"
@@ -72,7 +72,7 @@
           hide-details
         ></v-switch>
       </v-row>
-      <v-row align="center" class="row">
+      <v-row align="center">
         <v-switch
           disabled
           v-model="autoAdvance"

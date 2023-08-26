@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from "vue-router";
-import HeadingMessages from "./components/HeadingMessages.vue";
+import { RouterView } from "vue-router";
+/* import HeadingMessages from "./components/HeadingMessages.vue";
 import ToolbarComponent from "./components/ToolbarComponent.vue";
-import SettingsView from "./views/SettingsView.vue";
+import SettingsView from "./views/SettingsView.vue"; */
 </script>
 
 <template>
-  <header>
+  <RouterView />
+  <!-- <header>
     <ToolbarComponent>
       <SettingsView />
     </ToolbarComponent>
@@ -32,48 +33,48 @@ import SettingsView from "./views/SettingsView.vue";
     <v-btn>
       <RouterLink to="/example">Example Question</RouterLink>
     </v-btn>
-  </nav>
+  </nav> -->
 </template>
 
 <style scoped>
-header {
+/* header {
   line-height: 1.3;
   max-height: 100vh;
   background-color: aqua;
-}
+} */
 
-.logo {
+/* .logo {
   display: block;
   margin: 0 auto 1rem;
-}
+} */
 
-nav {
+/* nav {
   width: 100%;
   font-size: 12px;
   text-align: center;
-  /* margin-top: 2rem; */
+  margin-top: 2rem;
   background-color: yellow;
-}
+} */
 
-nav a.router-link-exact-active {
+/* nav a.router-link-exact-active {
   color: var(--color-text);
-}
+} */
 
-nav a.router-link-exact-active:hover {
+/* nav a.router-link-exact-active:hover {
   background-color: transparent;
 }
-
-nav a {
+ */
+/* nav a {
   display: inline-block;
   padding: 0 1rem;
   border-left: 1px solid var(--color-border);
-}
+} */
 
-nav a:first-of-type {
+/* nav a:first-of-type {
   border: 0;
-}
+} */
 
-@media (min-width: 1024px) {
+/* @media (min-width: 1024px) {
   header {
     display: flex;
     place-items: center;
@@ -98,5 +99,5 @@ nav a:first-of-type {
     padding: 1rem 0;
     margin-top: 1rem;
   }
-}
+} */
 </style>
