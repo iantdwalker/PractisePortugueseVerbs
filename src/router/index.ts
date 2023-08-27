@@ -25,6 +25,11 @@ const router = createRouter({
       component: () => import("../pages/AboutPage.vue"),
     },
     {
+      path: "/select-questions",
+      name: "selectQuestions",
+      component: () => import("../pages/QuestionTypesPage.vue"),
+    },
+    {
       path: "/example",
       name: "example",
       component: () => import("../components/ExampleQuestion2.vue"),

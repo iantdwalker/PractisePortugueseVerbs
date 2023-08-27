@@ -1,9 +1,9 @@
 <template>
   <v-btn>
-    <RouterLink to="/about">About</RouterLink>
+    <RouterLink to="/home">Home</RouterLink>
   </v-btn>
   <v-btn>
-    <RouterLink to="/select-questions">Start</RouterLink>
+    <RouterLink to="/example">Begin!</RouterLink>
   </v-btn>
 </template>
 
