@@ -10,11 +10,18 @@ const router = createRouter({
       component: HomePage,
     },
     {
+      path: "/home",
+      name: "home",
+      component: HomePage,
+    },
+    {
+      path: "/:pathMatch(.*)*",
+      redirect: "/home",
+      name: "notFound",
+    },
+    {
       path: "/about",
       name: "about",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import("../pages/AboutPage.vue"),
     },
     {
