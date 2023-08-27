@@ -3,9 +3,9 @@
     <template #header>
       <HeaderView />
     </template>
-    <AboutView/>
+    <AboutView />
     <template #nav>
-      <AboutNavView/>
+      <AboutNavView />
     </template>
   </AppStructure>
 </template>
@@ -17,5 +17,4 @@ import AboutView from "../views/AboutView.vue";
 import AboutNavView from "../views/AboutNavView.vue";
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
