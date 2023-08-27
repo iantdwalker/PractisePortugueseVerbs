@@ -24,23 +24,20 @@ import SettingsView from "../views/SettingsView.vue";
 
 <style scoped>
 .container {
-  background-color: brown;
   min-height: 100vh;
 }
 
 .header {
   line-height: 1.3;
   max-height: 100vh;
-  background-color: aqua;
 }
 
 .main {
-  background-color: gray;
   min-height: 100vh;
 }
 
 .nav {
-  background-color: yellow;
+  background-color: lightgray;
 }
 
 @media (min-width: 1024px) {

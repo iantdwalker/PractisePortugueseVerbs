@@ -1,5 +1,5 @@
 <template>
-  <v-toolbar class="toolbar" :elevation="8" density="compact">
+  <v-toolbar class="toolbar" :elevation="2" density="compact">
     <v-spacer></v-spacer>
     <v-btn icon class="icon" @click.stop="dislaySettings = !dislaySettings">
       <font-awesome-icon icon="cog" />
@@ -22,7 +22,8 @@ var dislaySettings = ref();
 
 <style scoped>
 .toolbar {
-  background-color: darkolivegreen;
+  background-color: lightgray;
+  margin-bottom: 10px;
 }
 
 .icon {

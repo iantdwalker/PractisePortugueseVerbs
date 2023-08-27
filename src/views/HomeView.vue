@@ -13,6 +13,7 @@
 <style scoped>
 .card {
   font-size: 1.2rem;
+  color: black;
   background-color: azure;
 }
 </style>
