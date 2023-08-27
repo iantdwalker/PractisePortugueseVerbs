@@ -1,6 +1,6 @@
 <template>
   <v-btn>
-    <RouterLink to="/">Home</RouterLink>
+    <RouterLink to="/home">Home</RouterLink>
   </v-btn>
 </template>
 

@@ -12,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import HeadingMessages from "../components/HeadingMessages.vue";
+import HeadingMessages from "../../components/HeadingMessages.vue";
 </script>
 
 <style scoped>

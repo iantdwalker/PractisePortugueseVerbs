@@ -1,20 +1,20 @@
 <template>
-  <AppStructure>
+  <PageLayout>
     <template #header>
       <HeaderView />
     </template>
     <AboutView />
     <template #nav>
-      <AboutNavView />
+      <AboutNav />
     </template>
-  </AppStructure>
+  </PageLayout>
 </template>
 
 <script setup lang="ts">
-import AppStructure from "../components/AppStructure.vue";
-import HeaderView from "../views/HeaderView.vue";
+import PageLayout from "../components/PageLayout.vue";
+import HeaderView from "../views/headers/HeaderView.vue";
 import AboutView from "../views/AboutView.vue";
-import AboutNavView from "../views/AboutNavView.vue";
+import AboutNav from "../views/navs/AboutNav.vue";
 </script>
 
 <style scoped></style>
