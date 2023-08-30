@@ -13,19 +13,15 @@ defineProps<{
 <style scoped>
 h1 {
   font-weight: 500;
-  font-size: 2rem;
-  position: relative;
-  top: -10px;
+  font-size: 2.75rem;
 }
 
-.greetings h1,
-.greetings .card {
+.greetings {
   text-align: center;
 }
 
 @media (min-width: 1024px) {
-  .greetings h1,
-  .greetings .card {
+  .greetings {
     text-align: left;
   }
 }
