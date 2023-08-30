@@ -27,7 +27,8 @@
 }
 
 .main {
-  min-height: 100vh;
+  margin-top: 10px;
+  /* background-color: aqua;*/
 }
 
 .nav {
