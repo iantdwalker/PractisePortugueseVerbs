@@ -12,8 +12,9 @@
 
 <style scoped>
 .card {
-  font-size: 1.2rem;
-  color: black;
-  background-color: azure;
+  font-size: 4rem;
+  color: var(--color-text);
+  text-align: center;
+  background-color: hsla(160, 100%, 37%, 0.2);
 }
 </style>
