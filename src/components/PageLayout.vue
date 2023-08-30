@@ -2,9 +2,6 @@
   <v-layout>
     <v-container class="container">
       <header class="header">
-        <ToolbarComponent>
-          <SettingsView />
-        </ToolbarComponent>
         <slot name="header"></slot>
       </header>
       <v-main class="main">
@@ -17,10 +14,7 @@
   </v-layout>
 </template>
 
-<script setup lang="ts">
-import ToolbarComponent from "../components/ToolbarComponent.vue";
-import SettingsView from "../views/SettingsView.vue";
-</script>
+<script setup lang="ts"></script>
 
 <style scoped>
 .container {
