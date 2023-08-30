@@ -9,7 +9,7 @@
           class="center-text-input themed-text-colour"
           :class="questionInputDisplayStyle"
           variant="underlined"
-          color="hsla(160, 100%, 37%, 1)"
+          :color="vueFontColor"
           autofocus
           active
           :prefix="questionPrefix"
@@ -44,6 +44,7 @@ const incorrectAnswerHint = "Incorrecto!";
 const questionIconText = "utensils";
 const correctAnswerIconText = "check";
 const incorrectAnswerIconText = "times";
+const vueFontColor = "hsla(160, 100%, 37%, 1)";
 
 var questionInputForm = ref();
 var questionInputValue = ref("");
@@ -212,7 +213,7 @@ function onFocus() {
 }
 
 .question-edit-colour {
-  color: hsla(160, 100%, 37%, 1);
+  color: var(--color-light-vue-green);
 }
 
 .question-incorrect-colour {

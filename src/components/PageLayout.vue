@@ -2,9 +2,6 @@
   <v-layout>
     <v-container class="container">
       <header class="header">
-        <ToolbarComponent>
-          <SettingsView />
-        </ToolbarComponent>
         <slot name="header"></slot>
       </header>
       <v-main class="main">
@@ -17,10 +14,7 @@
   </v-layout>
 </template>
 
-<script setup lang="ts">
-import ToolbarComponent from "../components/ToolbarComponent.vue";
-import SettingsView from "../views/SettingsView.vue";
-</script>
+<script setup lang="ts"></script>
 
 <style scoped>
 .container {
@@ -33,7 +27,8 @@ import SettingsView from "../views/SettingsView.vue";
 }
 
 .main {
-  min-height: 100vh;
+  margin-top: 10px;
+  /* background-color: aqua;*/
 }
 
 .nav {
@@ -51,7 +46,6 @@ import SettingsView from "../views/SettingsView.vue";
     text-align: left;
     margin-left: -1rem;
     font-size: 1rem;
-
     padding: 1rem 0;
     margin-top: 1rem;
   }
