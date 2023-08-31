@@ -27,6 +27,7 @@ var dislaySettings = ref();
 }
 
 .icon {
-  font-size: 2em;
+  font-size: 3em;
+  color: var(--color-settings-icon);
 }
 </style>

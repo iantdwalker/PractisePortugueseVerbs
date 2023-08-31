@@ -13,10 +13,8 @@ a,
   transition: 0.4s;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: var(--color-light-vue-azure);
-  }
+.btn {
+  color: var(--color-text);
 }
 
 @media (min-width: 1024px) {

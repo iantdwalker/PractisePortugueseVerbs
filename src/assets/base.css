@@ -36,6 +36,9 @@
   --color-light-vue-green: hsla(160, 100%, 37%, 1);
   --color-light-vue-azure: hsla(160, 100%, 37%, 0.2);
 
+  --color-background-nav: var(--color-light-vue-azure);
+  --color-settings-icon: var(--vt-c-text-light-1);
+
   --section-gap: 160px;
 }
 
@@ -50,6 +53,9 @@
 
     --color-heading: var(--vt-c-text-dark-1);
     --color-text: var(--vt-c-text-dark-2);
+
+    --color-background-nav: var(--color-light-vue-azure);
+    --color-settings-icon: var(--color-light-vue-green);
   }
 }
 
