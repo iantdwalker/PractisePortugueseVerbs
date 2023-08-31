@@ -21,18 +21,12 @@
   min-height: 100vh;
 }
 
-.header {
-  line-height: 1.3;
-  max-height: 100vh;
-}
-
 .main {
-  margin-top: 10px;
-  /* background-color: aqua;*/
+  margin-top: 25px;
 }
 
 .nav {
-  background-color: lightgray;
+  background-color: var(--color-background-nav);
 }
 
 @media (min-width: 1024px) {
@@ -40,14 +34,6 @@
     display: flex;
     place-items: center;
     padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-    padding: 1rem 0;
-    margin-top: 1rem;
   }
 }
 </style>
