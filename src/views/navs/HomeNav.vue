@@ -1,14 +1,42 @@
 <template>
-  <v-btn>
-    <RouterLink to="/about">About</RouterLink>
-  </v-btn>
-  <v-btn>
-    <RouterLink to="/select-questions">Start</RouterLink>
-  </v-btn>
+  <v-row no-gutters>
+    <v-spacer></v-spacer>
+    <v-spacer></v-spacer>
+    <v-col>
+      <RouterLink to="/about">
+        <v-btn density="comfortable" class="btn text-none">
+          <template #prepend>
+            <font-awesome-icon icon="info-circle" class="icon" />
+          </template>
+          About
+        </v-btn>
+      </RouterLink>
+    </v-col>
+    <v-spacer></v-spacer>
+    <v-col>
+      <RouterLink to="/select-questions">
+        <v-btn density="comfortable" class="btn text-none">
+          <template #prepend>
+            <font-awesome-icon icon="play" class="icon" />
+          </template>
+          Start
+        </v-btn>
+      </RouterLink>
+    </v-col>
+    <v-spacer></v-spacer>
+    <v-spacer></v-spacer>
+  </v-row>
 </template>
 
 <script setup lang="ts">
 import { RouterLink } from "vue-router";
 </script>
 
-<style scoped></style>
+<style scoped>
+@import "../../assets/main.css";
+
+.icon {
+  font-size: 2em;
+  color: var(--color-text);
+}
+</style>
