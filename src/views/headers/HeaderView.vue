@@ -5,7 +5,7 @@
       <img
         alt="Flag Image"
         class="flag-image"
-        src="@/assets/Flags_of_Brazil_and_Portugal.svg"
+        src="@/assets/images/Flags_of_Brazil_and_Portugal.svg"
         width="175"
         height="125"
       />
@@ -26,9 +26,9 @@
 </template>
 
 <script setup lang="ts">
-import ToolbarComponent from "../../components/ToolbarComponent.vue";
-import SettingsView from "../../views/SettingsView.vue";
-import HeadingMessages from "../../components/HeadingMessages.vue";
+import ToolbarComponent from "@/components/ToolbarComponent.vue";
+import SettingsView from "@/views/SettingsView.vue";
+import HeadingMessages from "@/components/HeadingMessages.vue";
 </script>
 
 <style scoped>

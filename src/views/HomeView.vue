@@ -12,6 +12,6 @@
   font-size: 1.5rem;
   color: var(--color-text);
   text-align: center;
-  background-color: var(--color-light-vue-azure);
+  background-color: var(--color-home-view-sheet-background);
 }
 </style>

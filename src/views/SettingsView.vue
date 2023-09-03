@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="settings-div">
     <v-container>
       <v-row align="center">
         <v-col cols="2">
@@ -104,6 +104,12 @@ var autoAdvance = ref(false);
 </script>
 
 <style scoped>
+.settings-div {
+  min-height: 100vh;
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+
 .divider {
   padding-top: 3px;
   padding-bottom: 3px;

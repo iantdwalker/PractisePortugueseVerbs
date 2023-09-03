@@ -65,9 +65,9 @@ function toggleTheme(): void {
 
 .switch-label {
   align-items: center;
-  background: var(--theme-toggle-background-color);
+  background: var(--color-theme-toggle-background);
   border: calc(var(--theme-toggle-element-size) * 0.025) solid
-    var(--theme-toggle-border-color);
+    var(--color-theme-toggle-border);
   border-radius: var(--theme-toggle-element-size);
   cursor: pointer;
   display: flex;
