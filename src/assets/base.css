@@ -19,6 +19,8 @@
   --vt-c-text-light-2: rgba(60, 60, 60, 0.66);
   --vt-c-text-dark-1: var(--vt-c-white);
   --vt-c-text-dark-2: rgba(235, 235, 235, 0.64);
+
+  --new-green: #81e6b8;
 }
 
 /* semantic color variables for this project */
@@ -36,14 +38,38 @@
   --color-light-vue-green: hsla(160, 100%, 37%, 1);
   --color-light-vue-azure: hsla(160, 100%, 37%, 0.2);
 
-  --color-background-nav: var(--color-light-vue-azure);
+  --color-background-nav: var(--new-green);
   --color-settings-icon: var(--vt-c-text-light-1);
 
   --section-gap: 160px;
+
+  /* color variables for settings theme toggle switch */
+  --theme-toggle-element-size: 4rem;
+  --theme-toggle-border-color: #cacaca;
+  --theme-toggle-background-color: #222;
+}
+
+:root.dark-theme {
+  --color-background: var(--vt-c-black);
+  --color-background-soft: var(--vt-c-black-soft);
+  --color-background-mute: var(--vt-c-black-mute);
+
+  --color-border: var(--vt-c-divider-dark-2);
+  --color-border-hover: var(--vt-c-divider-dark-1);
+
+  --color-heading: var(--vt-c-text-dark-1);
+  --color-text: var(--vt-c-text-dark-2);
+
+  --color-background-nav: var(--color-light-vue-azure);
+  --color-settings-icon: var(--color-light-vue-azure);
+
+  /* color variables for settings theme toggle switch */
+  --theme-toggle-border-color: #3f3f3f;
+  --theme-toggle-background-color: #ddd;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root.dark-theme {
     --color-background: var(--vt-c-black);
     --color-background-soft: var(--vt-c-black-soft);
     --color-background-mute: var(--vt-c-black-mute);
@@ -55,7 +81,11 @@
     --color-text: var(--vt-c-text-dark-2);
 
     --color-background-nav: var(--color-light-vue-azure);
-    --color-settings-icon: var(--color-light-vue-green);
+    --color-settings-icon: var(--color-light-vue-azure);
+
+    /* color variables for settings theme toggle switch */
+    --theme-toggle-border-color: #3f3f3f;
+    --theme-toggle-background-color: #ddd;
   }
 }
 
