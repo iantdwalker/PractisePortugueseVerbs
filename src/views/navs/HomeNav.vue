@@ -33,10 +33,10 @@ import { RouterLink } from "vue-router";
 </script>
 
 <style scoped>
-@import "../../assets/main.css";
+@import "@/assets/styles/main.css";
 
 .icon {
   font-size: 2em;
-  color: var(--color-text);
+  color: var(--color-nav-icon);
 }
 </style>
