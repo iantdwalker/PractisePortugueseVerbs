@@ -33,7 +33,7 @@ import { RouterLink } from "vue-router";
 </script>
 
 <style scoped>
-@import "../../assets/main.css";
+@import "@/assets/main.css";
 
 .icon {
   font-size: 2em;

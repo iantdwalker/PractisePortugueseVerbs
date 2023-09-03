@@ -16,6 +16,12 @@
       </v-row>
       <v-row align="center" pb="10">
         <v-col>
+          <div class="app-theme-label">App theme:</div>
+          <ThemeButton />
+        </v-col>
+      </v-row>
+      <v-row align="center">
+        <v-col>
           <v-radio-group label="App language:" hide-details>
             <v-radio
               disabled
@@ -88,6 +94,7 @@
 
 <script setup lang="ts">
 import { ref, reactive } from "vue";
+import ThemeButton from "@/components/ThemeButton.vue";
 const languages = reactive([{ name: "English" }, { name: "Portuguese" }]);
 var feedback = ref("submit");
 var showVerbHint = ref(true);
@@ -104,5 +111,9 @@ var autoAdvance = ref(false);
 
 .icon {
   font-size: 2em;
+}
+
+.app-theme-label {
+  margin-bottom: 10px;
 }
 </style>
